@@ -2,6 +2,7 @@
 function twentytwentyone_supports()
 {
     add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
 }
 
 function twentytwentyone_register_assets()
@@ -22,7 +23,7 @@ function twentytwentyone_title_separator()
 
 function twentytwentyone_document_title_parts($title)
 {
-    var_dump($title);
+   
     unset($title['tagline']);
     $title['demo'] = 'Bonjour le futur qui deviendra le passé';
     return $title;
