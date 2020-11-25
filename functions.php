@@ -5,10 +5,9 @@ function twentytwentyone_supports()
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
     register_nav_menu('header', 'En tête du menu');
-
 }
 
-function twentytwentyone_register_assets()
+/*function twentytwentyone_register_assets()
 {
     wp_register_style('bootstap', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css');
     wp_register_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js', ['popper', 'jquery'], false, true);
@@ -18,6 +17,7 @@ function twentytwentyone_register_assets()
     wp_enqueue_style('bootstrap');
     wp_enqueue_script('bootstrap');
 }
+*/
 
 function twentytwentyone_title_separator()
 {
@@ -26,15 +26,31 @@ function twentytwentyone_title_separator()
 
 function twentytwentyone_document_title_parts($title)
 {
-   
+
     unset($title['tagline']);
     $title['demo'] = 'Bonjour le futur qui deviendra le passé';
     return $title;
 }
 
+
+function wpbootstrap_styles_scripts(){
+    wp_enqueue_style('style', get_stylesheet_uri());
+    wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery'), 1, true);
+    wp_enqueue_script('boostrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array('jquery', 'popper'), 1, true);
+    }
+    add_action('wp_enqueue_scripts', 'wpbootstrap_styles_scripts');
+
+
+
 add_action('after_setup_theme', 'twentytwentyone_supports');
 // add_theme_support('title-tag'); // permet d'indiquer ce que supporte le theme add_theme_support
 
-add_action('wp_enqueue_scripts', 'twentytwentyone_register_assets');
+// add_action('wp_enqueue_scripts', 'twentytwentyone_register_assets');
+
+
 add_filter('document_title_separator', 'twentytwentyone_title_separator');
 add_filter('document_title_parts', 'twentytwentyone_document_title_parts');
+
+
