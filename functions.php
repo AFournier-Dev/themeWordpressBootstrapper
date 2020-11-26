@@ -111,3 +111,36 @@ function twentytwentyone_pagination(){
     echo "</ul>";;
     echo '</nav>';
 }
+
+// METABOX
+
+function twentytwentyone_add_custom_box (){
+    add_meta_box('twentytwentyone_sponso', 'Sponsoring', 'twentytwentyone_render_sponso_box', 'post', 'side' );
+}
+
+function twentytwentyone_render_sponso_box (){
+    ?>
+    <input type="hidden" value="0" name="twentytwentyone_sponso">
+     <input type="checkbox" value="1" name="twentytwentyone_sponso">
+    <label for="twentytwentyonesponso">Cet article à été ou sera sponsorisé !</label>
+   
+    <?php
+// echo 'futur ou passé du sponso';
+}
+
+function twentytwentyone_save_sponso ($post_id /*DANS LE POST QUE NOUS SAUVEGARDONS*/){
+   if (array_key_exists('twentytwentyone_sponso', $_POST)){
+       //var_dump($_POST);
+      // die();
+      if($_POST['twentytwentyone_sponso'] === '0'){
+        delete_post_meta($post_id, 'twentytwentyone_sponso');
+      } else {
+        update_post_meta($post_id, 'twentytwentyone_sponso', 1);
+      }
+
+   }
+}
+
+
+add_action('add_meta_boxes', 'twentytwentyone_add_custom_box');
+add_action('save_post', 'twentytwentyone_save_sponso');
