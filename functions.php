@@ -6,6 +6,10 @@ function twentytwentyone_supports()
     add_theme_support('menus');
     register_nav_menu('header', 'En tête du menu');
     register_nav_menu('footer', 'Pied de page');
+
+    add_image_size('post_thumbmail', 225, 350, true); // attention Wordpress ne fait pas de levelup of size image
+  //  remove_image_size('medium');
+  //  add_image_size('medium', 500, 750);
 }
 function wpbootstrap_styles_scripts()
 {
