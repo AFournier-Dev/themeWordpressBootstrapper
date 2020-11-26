@@ -78,19 +78,32 @@ add_filter('nav_menu_link_attributes', 'twentytwentyone_menu_link_class');
 */
 
 
-function twentytwentyone_pagination()
-{
-    echo '<nav aria-label="Pagination">';
+function twentytwentyone_pagination(){
     $pages = paginate_links(['type' => 'array']);
-
+    
+    if ($pages === null){ // SI PAS ASSEZ D ARTICLE POUR PAS D ERREUR
+        return; 
+    }
+    echo '<nav aria-label="Pagination" class="my-4">';
+    echo '<ul class="pagination">'; // LIENS PAGINES SOUS FORME DE TABLEAU
+    
     //  var_dump($pages);
-    foreach ($pages as $value) {
-        echo $value;
-        // echo '<li class="page-item">';
+    foreach ($pages as $page) {
+        $active = strpos($page, 'current') !== false; // SI WP A MIS LA CLASS COURANTE PAR DEFAUT RESTE A GENERER LE HTML EN FONCTION DE CE QUE JE VEUX
+
+        //ECRIRE HTML AU PLUS PROCHE DE WP POUR EVITER DE TRAVAIL PAS FORCEMENT UTILE
+
+        // echo $page;
+        $class = 'page-item';
+        if ($active) {
+            $class .= 'active';
+        }
+        echo '<li class="' . $class . '">';
+        echo str_replace('page-number', 'page-link', $page);
         // var_dump($pages);
         // echo $pages;
-        // echo "</li>";
+        echo "</li>";
     };
-    echo "</li>";;
+    echo "</ul>";;
     echo '</nav>';
 }
