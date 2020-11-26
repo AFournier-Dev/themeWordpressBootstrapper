@@ -20,6 +20,7 @@
                     </div>
                 </div>
             </div>
+            <?php twentytwentyone_pagination()?>
     </div>
 <?php endwhile ?>
 <?php else : ?>

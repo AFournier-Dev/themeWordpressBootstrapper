@@ -76,3 +76,21 @@ add_filter('nav_menu_css_class', 'twentytwentyone_menu_class');
 add_filter('nav_menu_link_attributes', 'twentytwentyone_menu_link_class');
 
 */
+
+
+function twentytwentyone_pagination()
+{
+    echo '<nav aria-label="Pagination">';
+    $pages = paginate_links(['type' => 'array']);
+
+    //  var_dump($pages);
+    foreach ($pages as $value) {
+        echo $value;
+        // echo '<li class="page-item">';
+        // var_dump($pages);
+        // echo $pages;
+        // echo "</li>";
+    };
+    echo "</li>";;
+    echo '</nav>';
+}
