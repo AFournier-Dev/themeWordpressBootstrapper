@@ -3,6 +3,7 @@
 class SponsoMetabox
 {
 const META_KEY = 'twentytwentyone_sponso';
+const NONCE = '_montheme_sponso_nonce';
 
     public static function register()
     {
@@ -18,6 +19,7 @@ const META_KEY = 'twentytwentyone_sponso';
     }
     public static function render($post){
         $value = get_post_meta($post->ID, self::META_KEY, true);
+        wp_once_field(self::NONCE, self::NONCE);
         ?>
         <input type="hidden" value="0" name="<?= self::META_KEY ?>">
          <input type="checkbox" value="1" name="<?= self::META_KEY ?>" <?= $value === '1' ? 'checked' : ''?>> <!-- A la place de $value === '1' ? 'checked' : ''?>  POSSIBILITE D UTILISER LA FONCTION: checked()-->
@@ -26,7 +28,11 @@ const META_KEY = 'twentytwentyone_sponso';
         <?php
     }
     public static function save($post){
-        if (array_key_exists(self::META_KEY, $_POST) && current_user_can('publish_post', $post /*si il peut ajouter un article il peut cocher que l'article est sponsorisé    https://wordpress.org/support/article/roles-and-capabilities/   */)) {
+        var_dump(); die();
+        if (
+            array_key_exists(self::META_KEY, $_POST) 
+            && current_user_can('publish_post', $post /*si il peut ajouter un article il peut cocher que l'article est sponsorisé    https://wordpress.org/support/article/roles-and-capabilities/   */
+            && wp_verify_nonce($_POST[self::NONCE], self::NONCE))) {
             //var_dump($_POST);
             // die();
             if ($_POST[self::META_KEY] === '0') {
