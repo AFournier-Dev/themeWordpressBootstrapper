@@ -6,13 +6,15 @@ const META_KEY = 'twentytwentyone_sponso';
 
     public static function register()
     {
-        add_action('add_meta_boxes', [self::class, 'add']);
+        add_action('add_meta_boxes', [self::class, 'add'],10, 2);
         add_action('save_post', [self::class, 'save']);
     }
 
-    public static function add()
+    public static function add($postType, $post)
     {
-        add_meta_box(self::META_KEY, 'Sponsoring', [self::class, 'render'], 'post', 'side');
+        if ($postType === 'post' && current_user_can('publish_post', $post )) {
+            add_meta_box(self::META_KEY, 'Sponsoring', [self::class, 'render'], 'post', 'side');
+        }        
     }
     public static function render($post){
         $value = get_post_meta($post->ID, self::META_KEY, true);
@@ -24,7 +26,7 @@ const META_KEY = 'twentytwentyone_sponso';
         <?php
     }
     public static function save($post){
-        if (array_key_exists(self::META_KEY, $_POST) && current_user_can('edit_post', $post /*si il peut ajouter un article il peut cocher que l'article est sponsorisé    https://wordpress.org/support/article/roles-and-capabilities/   */)) {
+        if (array_key_exists(self::META_KEY, $_POST) && current_user_can('publish_post', $post /*si il peut ajouter un article il peut cocher que l'article est sponsorisé    https://wordpress.org/support/article/roles-and-capabilities/   */)) {
             //var_dump($_POST);
             // die();
             if ($_POST[self::META_KEY] === '0') {
