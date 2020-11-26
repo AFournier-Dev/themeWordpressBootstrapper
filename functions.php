@@ -129,7 +129,7 @@ function twentytwentyone_render_sponso_box (){
 }
 
 function twentytwentyone_save_sponso ($post_id /*DANS LE POST QUE NOUS SAUVEGARDONS*/){
-   if (array_key_exists('twentytwentyone_sponso', $_POST)){
+   if (array_key_exists('twentytwentyone_sponso', $_POST) && current_user_can( 'edit_post', $post_id /*si il peut ajouter un article il peut cocher que l'article est sponsorisé    https://wordpress.org/support/article/roles-and-capabilities/   */)){
        //var_dump($_POST);
       // die();
       if($_POST['twentytwentyone_sponso'] === '0'){
