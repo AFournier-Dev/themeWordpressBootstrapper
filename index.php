@@ -23,7 +23,7 @@
 
         <?php while (have_posts()) : the_post(); ?>
             <div class="col-sm-4">
-                <?php require_once('parts/post.php');?>
+                <?php get_template_part('parts/post');?>
             </div>
         <?php endwhile ?>
     </div>

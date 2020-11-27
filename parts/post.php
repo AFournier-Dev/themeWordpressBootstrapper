@@ -10,7 +10,7 @@
             ?>
         </ul>
         <?php
-        var_dump(get_the_terms(get_the_ID(), 'sport'));
+     //   var_dump(get_the_terms(get_the_ID(), 'sport'));
         ?>
         <p class="card-text">
             <?php the_excerpt() ?>
