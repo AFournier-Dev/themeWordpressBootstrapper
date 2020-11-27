@@ -1,0 +1,22 @@
+<div class="card">
+    <?php the_post_thumbnail('card-header', ['class' => 'card-img-top', 'alt' => '', 'style' => 'height: auto;']); ?>
+    <!--     <img class="card-img-top" src="..." alt="Card image cap"> -->
+    <div class="card-body">
+        <h5 class="card-title"><?php the_title() ?></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><?php the_category() ?></h6>
+        <ul>
+            <?php
+            the_terms(get_the_ID(), 'sport', '<li>', '</li><li>', '</li>');
+            ?>
+        </ul>
+        <?php
+        var_dump(get_the_terms(get_the_ID(), 'sport'));
+        ?>
+        <p class="card-text">
+            <?php the_excerpt() ?>
+
+
+        </p>
+        <a href="<?php the_permalink() ?>" class="card-link">Voir l'article</a>
+    </div>
+</div>
