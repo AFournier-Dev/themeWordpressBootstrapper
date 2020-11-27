@@ -1,6 +1,6 @@
 <?php get_header() ?>
 
-<h1>HOME</h1>
+<?php wp_list_categories(['taxonomy' => 'sport']); ?>
 
 <?php if (have_posts()) : ?>
     <div class="row">
