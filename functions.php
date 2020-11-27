@@ -147,4 +147,7 @@ add_action('init', 'twentytwentyone_init');
 
 // METABOX DANS UNE METHODE
 require_once('metaboxes/sponso.php');
+require_once('options/agence.php');
+
 SponsoMetabox::register();
+AgenceMenuPage::register();
