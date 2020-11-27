@@ -111,6 +111,27 @@ function twentytwentyone_pagination(){
     echo "</ul>";;
     echo '</nav>';
 }
+function twentytwentyone_init(){
+    register_taxonomy('sport', 'post', [
+        'labels' => [ //CHANGER LES LIBELLER DANS L INTERFACE ADMIN
+            'name' => 'Sport',
+            'singular_name'     => 'Sport',
+            'plural_name'       => 'Sports',
+            'search_items'      => 'Rechercher des sports',
+            'all_items'         => 'Tous les sports',
+            'edit_item'         => 'Editer le sport',
+            'update_item'       => 'Mettre à jour le sport',
+            'add_new_item'      => 'Ajouter un nouveau sport',
+            'new_item_name'     => 'Ajouter un nouveau sport',
+            'menu_name'         => 'Sport',
+        ],
+        'show_in_rest' => true  // INCLURE LE PANNEAU DE TAXONOMY DANS L INTERFACE ADMIN
+    ]);
+}
+
+
+add_action('init', 'twentytwentyone_init');
+
 
 // METABOX DANS UNE METHODE
 require_once('metaboxes/sponso.php');
