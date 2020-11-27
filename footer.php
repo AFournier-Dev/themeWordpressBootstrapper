@@ -8,5 +8,8 @@
               'menu_class' => 'navbar-nav mr-auto'
               ]) ?>
 </footer>
+<div>
+    <?= get_option('agence_horaire')?>
+</div>
 </body>
 </html>
