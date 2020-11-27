@@ -19,7 +19,7 @@ const NONCE = '_montheme_sponso_nonce';
     }
     public static function render($post){
         $value = get_post_meta($post->ID, self::META_KEY, true);
-        wp_once_field(self::NONCE, self::NONCE);
+        wp_nonce_field(self::NONCE, self::NONCE);
         ?>
         <input type="hidden" value="0" name="<?= self::META_KEY ?>">
          <input type="checkbox" value="1" name="<?= self::META_KEY ?>" <?= $value === '1' ? 'checked' : ''?>> <!-- A la place de $value === '1' ? 'checked' : ''?>  POSSIBILITE D UTILISER LA FONCTION: checked()-->
@@ -28,7 +28,7 @@ const NONCE = '_montheme_sponso_nonce';
         <?php
     }
     public static function save($post){
-        var_dump(); die();
+     //    var_dump(); die();
         if (
             array_key_exists(self::META_KEY, $_POST) 
             && current_user_can('publish_post', $post /*si il peut ajouter un article il peut cocher que l'article est sponsorisé    https://wordpress.org/support/article/roles-and-capabilities/   */

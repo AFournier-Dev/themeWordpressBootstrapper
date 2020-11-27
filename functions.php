@@ -111,6 +111,7 @@ function twentytwentyone_pagination(){
     echo "</ul>";;
     echo '</nav>';
 }
+
 function twentytwentyone_init(){
     register_taxonomy('sport', 'post', [
         'labels' => [ //CHANGER LES LIBELLER DANS L INTERFACE ADMIN
@@ -125,7 +126,9 @@ function twentytwentyone_init(){
             'new_item_name'     => 'Ajouter un nouveau sport',
             'menu_name'         => 'Sport',
         ],
-        'show_in_rest' => true  // INCLURE LE PANNEAU DE TAXONOMY DANS L INTERFACE ADMIN
+        'show_in_rest' => true,  // INCLURE LE PANNEAU DE TAXONOMY DANS L INTERFACE ADMIN
+        'hierarchical' =>true, // METTRE EN CHECKBOX
+        'show_admin_column' =>true, //DANS L ADMIN DE L ARTICLE
     ]);
 }
 
