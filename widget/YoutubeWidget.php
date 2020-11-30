@@ -12,7 +12,7 @@ class YoutubeWidget extends WP_Widget {
             echo $args['before_title'] . $title . $args['after_title'];
         }
         $youtube = isset($instance['youtube']) ? $instance['youtube'] : '';
-        echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/wTrhiyDQfSY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . esc_attr($youtube) . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         echo $args['after_widget'];
     }
 
