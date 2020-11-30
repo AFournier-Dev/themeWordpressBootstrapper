@@ -201,7 +201,10 @@ function montheme_pre_get_posts ($query) {
 }
 add_action('pre_get_posts', 'montheme_pre_get_posts');
 
+
+require_once 'widget/YoutubeWidget.php';
 function twentytwentyone_register_widget (){
+    register_widget(YoutubeWidget::class);
     register_sidebar([
         'id' => 'homepage',
         'name' => 'Sidebar Accueil',
@@ -214,3 +217,6 @@ function twentytwentyone_register_widget (){
 }
 
 add_action('widgets_init', 'twentytwentyone_register_widget');
+
+
+
