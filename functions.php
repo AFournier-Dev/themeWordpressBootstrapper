@@ -172,3 +172,15 @@ add_filter('manage_bien_post_custom_column', function($column, $postId){
 add_action('admin_enque_scripts', function(){
 wp_enqueue_style('admin_twentytwentyone', get_template_directory_uri() . '/assets/admin.css');
 });
+
+
+add_filter('manage_post_posts_custom_column', function ($column, $postId) {
+    if ($column === 'sponso') {
+        if (!empty(get_post_meta($postId, SponsoMetaBox::META_KEY, true))) {
+            $class = 'yes';
+        } else {
+            $class = 'no';
+        }
+        echo '<div class="bullet bullet-' . $class . '"></div>';
+    }
+}, 10, 2);
