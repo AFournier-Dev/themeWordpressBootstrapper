@@ -151,3 +151,24 @@ require_once('options/agence.php');
 
 SponsoMetabox::register();
 AgenceMenuPage::register();
+
+add_filter('manage_bien_posts_columns', function($columns){
+    return[
+        'cb' => $columns['cb'],
+        'thumbnail' => 'Miniature',
+        'title' => $columns['title'],
+        'date' => $columns['date'],
+
+    ];
+});
+
+add_filter('manage_bien_post_custom_column', function($column, $postId){
+    if ($column === 'thumbnail'){
+        the_post_thumbnail('thumbnail', $postId);
+    }
+    //var_dump(func_get_args());
+}, 10, 2);
+
+add_action('admin_enque_scripts', function(){
+wp_enqueue_style('admin_twentytwentyone', get_template_directory_uri() . '/assets/admin.css');
+});
