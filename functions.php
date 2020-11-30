@@ -200,3 +200,17 @@ function montheme_pre_get_posts ($query) {
     }
 }
 add_action('pre_get_posts', 'montheme_pre_get_posts');
+
+function twentytwentyone_register_widget (){
+    register_sidebar([
+        'id' => 'homepage',
+        'name' => 'Sidebar Accueil',
+        'before_widget' => '<div class="p-4 %2$s" id="%1$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4 class="font-italic">',
+        'after_title' => '</h4>'
+    ]);
+    // register_sidebars();
+}
+
+add_action('widgets_init', 'twentytwentyone_register_widget');
